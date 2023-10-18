@@ -45,9 +45,9 @@ function filterTVShowsByInvestment(tvshows: Itvshow[], referencial: number, call
 
 function displayFilteredTVShows(filteredTVShows: Itvshow[]) {
     if (filteredTVShows.length === 0) {
-        console.log("No TV shows found with investment lower than the referencial.");
+        console.log("No Tvshows.");
     } else {
-        console.log("TV Shows with investment lower than the referencial:");
+        console.log("TV Shows");
         filteredTVShows.forEach(tvshow => {
             console.log(`Name: ${tvshow.name}, Investment: ${tvshow.investment}`);
         });
