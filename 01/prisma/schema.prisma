@@ -9,3 +9,18 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+model user{
+  id:number;
+  name: string;
+  director:string;
+  investment: number;
+  cast: string;
+  seasons season[]
+}
+
+model season{
+  id: number;
+  description: string;
+  episodesNumber: number;
+  tvshowId: number;
+}
