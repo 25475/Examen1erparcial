@@ -34,14 +34,25 @@ const ITVshow: Itvshow[] = [
     }
 ];
 
-const findtvshows = (Itvshow:string): Itvshow | undefined => void{
+interface TVShowCallback {
+    (filteredTVShows: Itvshow[]): void;
+}
 
-    const tvshows = ITVshow.filter (
+function filterTVShowsByInvestment(tvshows: Itvshow[], referencial: number, callback: TVShowCallback) {
+    const filteredTVShows = tvshows.filter(tvshow => tvshow.investment < referencial);
+    callback(filteredTVShows);
+}
 
-        (tvshows:Itvshow) => {return tvshows.precio <25}
-    )
-    tvshows.forEach ((tvshows:Itvshow)=> 
-    {
-        console.log (tvshows)
+function displayFilteredTVShows(filteredTVShows: Itvshow[]) {
+    if (filteredTVShows.length === 0) {
+        console.log("No TV shows found with investment lower than the referencial.");
+    } else {
+        console.log("TV Shows with investment lower than the referencial:");
+        filteredTVShows.forEach(tvshow => {
+            console.log(`Name: ${tvshow.name}, Investment: ${tvshow.investment}`);
+        });
     }
-    )}
+}
+
+const referencial = 20;
+filterTVShowsByInvestment(ITVshow, referencial, displayFilteredTVShows);
